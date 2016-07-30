@@ -87,14 +87,10 @@ $(document).ready(function () {
 				}
 
 				// We don't want to use AutoFire and InfinteScrolls together, since they have similar functions.
-				
-				// Use Infinte Scrolls first if avaiable.
 				if (potionName === 'Infinite Scrolls' && isPotionActive_ScrollsAutoFire) {
-					isPotionActive_InfinteScrolls = true;
 					continue;
 				}
 				if (potionName === 'Scrolls Auto Fire' && isPotionActive_InfinteScrolls) {
-					isPotionActive_ScrollsAutoFire = true;
 					continue;
 				}
 
@@ -107,7 +103,14 @@ $(document).ready(function () {
 
 				// Only click these if we are in battle, no need to chug potions if we are walking around peaceful overworld.
 				if (isBossEncounter || isEncounter) {
-					console.log('Using potion : ' + potionName);
+					
+					if (potionName === 'Infinite Scrolls') {
+						isPotionActive_InfinteScrolls = true;
+					}
+					if (potionName === 'Scrolls Auto Fire') {
+						isPotionActive_ScrollsAutoFire = true;
+					}
+				
 					clickSelector(potionSelector);
 				}
 
