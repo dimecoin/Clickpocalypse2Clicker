@@ -32,7 +32,7 @@ Download c2c.user.js and install as a user script.
 
 ### Scrolls
 * If 'Infinite Scrolls' potion is active, then all scroll types will be used 4/second on all encounters.
-* If 'Scrolls Auto Fire' potion is active, no scrolls will used since potion gives free use.
+* If 'Scrolls Auto Fire' potion is active, no scrolls will used for normal ecounters, since potion gives free use.  Will still use non-free scrolls during boss encounters.
 * 'Spider Web' scrolls will be liberally (till none are left) on normal encounters and not fired during boss encounters (bosses are immune).
 * All other scrolls will be fired at normal encounters, until only 15 are left.  This "reserve" quantity will be saved for boss encounters.
 * Scrolls will be used if quantity is greater than 29 (to make room to pick up more).
@@ -42,7 +42,7 @@ Download c2c.user.js and install as a user script.
 
 * No logic, will not click anything.
 
-### Game end/rest
+### Game end/reset
 
 * No logic, will not click anything if you beat the game.
 
