@@ -22,7 +22,6 @@ $(document).ready(function () {
 
 		// Determines our encounter states
 		var isBossEncounter = ($('.bossEncounterNotificationDiv').length != 0);
-		//encounterNotificationPanel
 		var isEncounter = ($('#encounterNotificationPanel').css('display') !== 'none');
 		//console.log("Boss: " +isBossEncounter +" Normal: " +isEncounter);
 
