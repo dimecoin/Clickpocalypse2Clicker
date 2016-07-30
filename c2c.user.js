@@ -153,7 +153,8 @@ $(document).ready(function () {
 			}
 
 			// Fire 0 scrolls if Autofire is active... it fires them for free, so let's not waste ours.
-			if (isPotionActive_ScrollsAutoFire) {
+			// unless boss encounter, we still want to double up on the big guys...
+			if (isPotionActive_ScrollsAutoFire && !isBossEncounter) {
 				continue;
 			}
 
