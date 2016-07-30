@@ -3,7 +3,7 @@
 // @namespace   C2C
 // @description Clicker Bot for Clickpocalypse2
 // @include     http://minmaxia.com/c2/
-// @version     1.0.3
+// @version     1.0.5
 // @grant       none
 // @require https://code.jquery.com/jquery-3.1.0.slim.min.js
 // ==/UserScript==
@@ -94,8 +94,8 @@ $(document).ready(function () {
 					continue;
 				}
 
-				// Always click farm bonus potions as soon as we get them, since they are useful anywhere.
-				if (potionName === 'Faster Infestation' || potionName === 'More Kills Per Farm') {
+				// Always click farm bonus or fast walking potions as soon as we get them, since they are useful anywhere.
+				if (potionName === 'Faster Infestation' || potionName === 'More Kills Per Farm' || potionName === 'Fast Walking') {
 					console.log('Using potion : ' + potionName);
 					clickSelector(potionSelector);
 					continue;

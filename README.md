@@ -25,10 +25,9 @@ Download c2c.user.js and install as a user script.
 
 ### Potions
 
-* Farm potions ('Faster Infestation' and 'More Kills Per Farm') will be used as soon as they are obtained
+* Farm potions ('Faster Infestation' and 'More Kills Per Farm') and 'Fast Walking' will be used as soon as they are obtained since they are beneficial outside of combat.
 * Scrolls potions ('Scrolls Auto Fire' and 'Infinite Scrolls') will not be used together.  Only one will be active as any given time since their functions overlap.
 * All non-farm potions will only be used during encounters.  This is so they aren't "wasted" while walking around in peaceful overworld.
-
 
 ### Scrolls
 * If 'Infinite Scrolls' potion is active, then all scroll types will be used 4/second on all encounters.
@@ -36,7 +35,6 @@ Download c2c.user.js and install as a user script.
 * 'Spider Web' scrolls will be liberally (till none are left) on normal encounters and not fired during boss encounters (bosses are immune).
 * All other scrolls will be fired at normal encounters, until only 15 are left.  This "reserve" quantity will be saved for boss encounters.
 * Scrolls will be used if quantity is greater than 29 (to make room to pick up more).
-
 
 ### Points Upgrade
 
