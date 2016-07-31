@@ -44,11 +44,12 @@ Download c2c.user.js and install as a user script.
 
 * No logic, will not click anything if you beat the game.
 
+# todos
 
-
-
-
-
+* Reserve quantity of scrolls should be used on normal encounters if any character is stunned.
+* Allow optional upgrade of [AP] Points Upgrades 
+* Character skill upgrade logic could be tweaked to maximize certain skills first.
+* Smarter use of Spider Web scroll (don't spam if all enemies are already stuck).
 
 
 
