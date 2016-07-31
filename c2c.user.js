@@ -28,7 +28,7 @@ $(document).ready(function () {
 		// Determine if this is a difficult encounter... (one or more characters are stunned).
 		var isDifficultEncounter = false;
 		$('.itemImage').each(function () {
-			if (this.title === "Stunned") {
+			if ( this.title === "Stunned" && this.css('display') !=== 'none') ) {
 				isDifficultEncounter = true;
 				return (false);
 			}
