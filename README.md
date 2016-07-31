@@ -27,7 +27,7 @@ Download c2c.user.js and install as a user script.
 * Farm potions ('Faster Infestation' and 'More Kills Per Farm') and 'Fast Walking' will be used as soon as they are obtained since they are beneficial outside of combat.
 * Scrolls potions ('Scrolls Auto Fire' and 'Infinite Scrolls') will not be used together.  Only one will be active as any given time since their functions overlap.
 * All non-farm potions will only be used during encounters.  This is so they aren't "wasted" while walking around in peaceful overworld.
-* 'Potions Last Longer' is only used when you have 6 or more potions in inventory.
+* 'Potions Last Longer' is only used when you have 6 or more potions in inventory or if either Scroll Potion is active ('Scrolls Auto Fire' and 'Infinite Scrolls').
 
 ### Scrolls
 * If 'Infinite Scrolls' potion is active, then all scroll types will be used 4/second on all encounters.
@@ -53,6 +53,11 @@ Download c2c.user.js and install as a user script.
 
 # updates
 
+### 1.0.7
+
+* fixed bug with detecting if an encounter is difficult.
+* Better strategy for 'Potions Last Longer'
+
 ### 1.0.6
 
 * Fixed bug with 'Infinite Scroll' spam.
@@ -60,3 +65,5 @@ Download c2c.user.js and install as a user script.
 * Added strategy for 'Potions Last Longer'.
 * Add AP Point Upgrade strategy.
 * Added strategy for "difficult encounters"
+
+

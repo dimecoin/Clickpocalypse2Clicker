@@ -3,7 +3,7 @@
 // @namespace   C2C
 // @description Clicker Bot for Clickpocalypse2
 // @include     http://minmaxia.com/c2/
-// @version     1.0.6
+// @version     1.0.7
 // @grant       none
 // @require https://code.jquery.com/jquery-3.1.0.slim.min.js
 // ==/UserScript==
@@ -26,13 +26,27 @@ $(document).ready(function () {
 		//console.log("Boss: " +isBossEncounter +" Normal: " +isEncounter);
 
 		// Determine if this is a difficult encounter... (one or more characters are stunned).
+		//todo: should cancel search once we find it to be true.
 		var isDifficultEncounter = false;
-		$('.itemImage').each(function () {
-			if ( this.title === "Stunned" && this.css('display') !=== 'none') ) {
-				isDifficultEncounter = true;
-				return (false);
+		// slot positions.
+		var pos = ['A', 'B', 'C', 'E', 'E', 'F'];
+		$.each(pos, function (idx) {
+			var letter = pos[idx];
+
+			// character positions.
+			for (var char = 0; char < 5; char++) {
+
+				var name = '#adventurerEffectIcon' + letter + char;
+				var selector = $(name);
+				//console.log("Checking: " + name + " Title: " + selector.attr('title') + " Display " + selector.css('display') + " HTML: " +selector.html());
+				if (selector.attr('title') === 'Stunned' && selector.css('display') !== 'none') {
+					isDifficultEncounter = true;
+
+				}
 			}
 		});
+
+		//console.log("isDifficultEncounter: " + isDifficultEncounter);
 
 		// loot them chests... not sure which one of these is working.
 		clickSelector($('#treasureChestLootButtonPanel').find('.gameTabLootButtonPanel'));
@@ -140,7 +154,7 @@ $(document).ready(function () {
 					}
 
 					if (potionName === 'Potions Last Longer') {
-						if (potionCount < 6) {
+						if (potionCount < 6 && !(isPotionActive_InfinteScrolls || isPotionActive_ScrollsAutoFire)) {
 							continue;
 						}
 					}
