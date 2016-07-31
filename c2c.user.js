@@ -3,7 +3,7 @@
 // @namespace   C2C
 // @description Clicker Bot for Clickpocalypse2
 // @include     http://minmaxia.com/c2/
-// @version     1.0.5
+// @version     1.0.6
 // @grant       none
 // @require https://code.jquery.com/jquery-3.1.0.slim.min.js
 // ==/UserScript==
@@ -25,9 +25,32 @@ $(document).ready(function () {
 		var isEncounter = ($('#encounterNotificationPanel').css('display') !== 'none');
 		//console.log("Boss: " +isBossEncounter +" Normal: " +isEncounter);
 
+		// Determine if this is a difficult encounter... (one or more characters are stunned).
+		var isDifficultEncounter = false;
+		$('.itemImage').each(function () {
+			if (this.title === "Stunned") {
+				isDifficultEncounter = true;
+				return (false);
+			}
+		});
+
 		// loot them chests... not sure which one of these is working.
 		clickSelector($('#treasureChestLootButtonPanel').find('.gameTabLootButtonPanel'));
 		clickSelector($('#treasureChestLootButtonPanel').find('.lootButton'));
+
+		// Update AP Upgrades
+		for (var row = 0; row < 12; row++) {
+			// skip 'Offline Time Bonus' upgrade.
+			if (row == 3) {
+				continue;
+			}
+			for (var col = 0; col < 2; col++) {
+
+				var name = "#pointUpgradesContainer_" + row + "_" + col + "_" + row;
+
+				clickIt(name);
+			}
+		}
 
 		// Cycle though all quick bar upgrades in reverse order.
 		for (var i = 43; i >= 0; i--) {
@@ -45,10 +68,11 @@ $(document).ready(function () {
 			}
 		}
 
-		// detect which potions are active before taking any actions
+		// Get information about potions are active before taking any actions
 
 		var isPotionActive_ScrollsAutoFire = false;
 		var isPotionActive_InfinteScrolls = false;
+		var potionCount = 0;
 
 		for (var row = 0; row < 4; row++) {
 			for (var col = 0; col < 2; col++) {
@@ -60,18 +84,22 @@ $(document).ready(function () {
 				if (potionName.length == 0) {
 					continue;
 				}
+
+				potionCount++;
+
 				if (potionName === 'Scrolls Auto Fire') {
-					isPotionActive_ScrollsAutoFire = true;
+					isPotionActive_ScrollsAutoFire = potionActive;
 				}
 				if (potionName === 'Infinite Scrolls') {
-					isPotionActive_InfinteScrolls = true;
+					isPotionActive_InfinteScrolls = potionActive;
 				}
 
 			}
 		}
 
-		// Click them potions
+		//console.log ("AF: " +isPotionActive_ScrollsAutoFire +" IS: " +isPotionActive_InfinteScrolls +" Potion Count: " +potionCount );
 
+		// Click them potions
 		for (var row = 0; row < 4; row++) {
 			for (var col = 0; col < 2; col++) {
 
@@ -103,21 +131,53 @@ $(document).ready(function () {
 
 				// Only click these if we are in battle, no need to chug potions if we are walking around peaceful overworld.
 				if (isBossEncounter || isEncounter) {
-					
+
 					if (potionName === 'Infinite Scrolls') {
 						isPotionActive_InfinteScrolls = true;
 					}
 					if (potionName === 'Scrolls Auto Fire') {
 						isPotionActive_ScrollsAutoFire = true;
 					}
-				
+
+					if (potionName === 'Potions Last Longer') {
+						if (potionCount < 6) {
+							continue;
+						}
+					}
+
 					clickSelector(potionSelector);
 				}
 
 			}
 		}
 
-		// Click scrolls
+		// Get info about scrolls before taking any action.
+		var totalScrolls = 0;
+		for (var i = 0; i < 6; i++) {
+
+			var scrollCell = $('#scrollButtonCell' + i);
+			var scrollButton = scrollCell.find('.scrollButton');
+			var scrollAmount = scrollCell.find('tr').eq(1).text().replace('x', ''); ;
+
+			if (!scrollAmount.length) {
+				continue;
+			}
+
+			if (scrollAmount === 'Infinite' || isPotionActive_InfinteScrolls) {
+				break;
+			}
+
+			// Don't count spider webs
+			if (i != 1) {
+				totalScrolls += parseInt(scrollAmount);
+			}
+
+		}
+
+		//console.log("Total Scrolls:" +totalScrolls);
+
+
+		// click them scrolls
 		for (var i = 0; i < 6; i++) {
 
 			var scrollCell = $('#scrollButtonCell' + i);
@@ -139,22 +199,15 @@ $(document).ready(function () {
 
 				// 4 times per second
 				clickSelector(scrollButton);
-				setTimeout(function () {
-					clickSelector(scrollButton);
-				}, 250);
-				setTimeout(function () {
-					clickSelector(scrollButton);
-				}, 500);
-				setTimeout(function () {
-					clickSelector(scrollButton);
-				}, 750);
-
+				setTimeout(clickSelector, 250, scrollButton);
+				setTimeout(clickSelector, 500, scrollButton);
+				setTimeout(clickSelector, 750, scrollButton);
 				continue;
 			}
 
 			// Fire 0 scrolls if Autofire is active... it fires them for free, so let's not waste ours.
 			// unless boss encounter, we still want to double up on the big guys...
-			if (isPotionActive_ScrollsAutoFire && !isBossEncounter) {
+			if (isPotionActive_ScrollsAutoFire && !isBossEncounter && !isDifficultEncounter) {
 				continue;
 			}
 
@@ -163,17 +216,20 @@ $(document).ready(function () {
 			if (i == 1 && !isBossEncounter) {
 				clickSelector(scrollButton);
 			}
+
 			if (i != 1) {
 
 				// keep scrolls in reserve if generic encounter so we have them for boss.
 				// No limit if this is a boss encounter
-				if (scrollAmount > scrollReserve || isBossEncounter) {
+				if (scrollAmount > scrollReserve || isBossEncounter || isDifficultEncounter) {
+
 					clickSelector(scrollButton);
 				}
 
 			}
 
 		}
+
 	}, 1000);
 });
 /*** Click by div id **/
@@ -186,7 +242,6 @@ function clickIt(divName) {
 	div.mouseup();
 }
 /*** Click by Selector **/
-
 function clickSelector($selector) {
 	$selector.mouseup();
 }

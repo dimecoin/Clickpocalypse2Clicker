@@ -24,21 +24,20 @@ Download c2c.user.js and install as a user script.
 * No strategy yet, but will automatically level up characters and select first available skill upgrade in order.
 
 ### Potions
-
 * Farm potions ('Faster Infestation' and 'More Kills Per Farm') and 'Fast Walking' will be used as soon as they are obtained since they are beneficial outside of combat.
 * Scrolls potions ('Scrolls Auto Fire' and 'Infinite Scrolls') will not be used together.  Only one will be active as any given time since their functions overlap.
 * All non-farm potions will only be used during encounters.  This is so they aren't "wasted" while walking around in peaceful overworld.
+* 'Potions Last Longer' is only used when you have 6 or more potions in inventory.
 
 ### Scrolls
 * If 'Infinite Scrolls' potion is active, then all scroll types will be used 4/second on all encounters.
-* If 'Scrolls Auto Fire' potion is active, no scrolls will used for normal ecounters, since potion gives free use.  Will still use non-free scrolls during boss encounters.
+* If 'Scrolls Auto Fire' potion is active, no scrolls will used for normal encounters, since potion gives free use.  Will still use non-free scrolls during boss or difficult encounters.
 * 'Spider Web' scrolls will be liberally (till none are left) on normal encounters and not fired during boss encounters (bosses are immune).
-* All other scrolls will be fired at normal encounters, until only 15 are left.  This "reserve" quantity will be saved for boss encounters.
+* All other scrolls will be fired at normal encounters, until only 15 are left.  This "reserve" quantity will be saved for boss encounters or "difficult encounters" (if one or more characters is stunned during fight).
 * Scrolls will be used if quantity is greater than 29 (to make room to pick up more).
 
 ### Points Upgrade
-
-* No logic, will not click anything.
+* It will upgrade all AP Point Upgrades in as they are available.  The exception being 'Offline Time Bonus', it will never be clicked. (player can do manually if they wish).
 
 ### Game end/reset
 
@@ -52,5 +51,12 @@ Download c2c.user.js and install as a user script.
 * Smarter use of Spider Web scroll (don't spam if all enemies are already stuck).
 
 
+# updates
 
+### 1.0.6
 
+* Fixed bug with 'Infinite Scroll' spam.
+* Fixed bug were 'Infinite Scroll' and 'Auto Fire' won't be correctly used if both were in inventory
+* Added strategy for 'Potions Last Longer'.
+* Add AP Point Upgrade strategy.
+* Added strategy for "difficult encounters"
