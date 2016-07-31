@@ -48,6 +48,7 @@ Download c2c.user.js and install as a user script.
 * Character skill upgrade logic could be tweaked to maximize certain skills first.
 * Smarter use of Spider Web scroll (don't spam if all enemies are already stuck).
 * Reserve qty of scrolls could be done total, instead or per scroll type.
+* Potion 'Spells Cost Nothing' should be sold if no mage is in party?  Not sure if useful for fighters.
 
 
 # updates
