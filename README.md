@@ -24,8 +24,9 @@ Download c2c.user.js and install as a user script.
 * No strategy yet, but will automatically level up characters and select first available skill upgrade in order.
 
 ### Potions
-* Farm potions ('Faster Infestation' and 'More Kills Per Farm') and 'Fast Walking' will be used as soon as they are obtained since they are beneficial outside of combat.
+* Farm potions ('Faster Infestation', 'Faster Farming' and 'More Kills Per Farm') and 'Fast Walking' will be used as soon as they are obtained since they are beneficial outside of combat.
 * Scrolls potions ('Scrolls Auto Fire' and 'Infinite Scrolls') will not be used together.  Only one will be active as any given time since their functions overlap.
+* Treasure Potions ('Random Treasure Room', 'Double Gold Drops' and 'Double Item Drops') aren't used if Scroll potions ('Scrolls Auto Fire' and 'Infinite Scrolls') are active (since it slows party down to much).  
 * All non-farm potions will only be used during encounters.  This is so they aren't "wasted" while walking around in peaceful overworld.
 * 'Potions Last Longer' is only used when you have 6 or more potions in inventory or if either Scroll Potion is active ('Scrolls Auto Fire' and 'Infinite Scrolls').
 
@@ -49,9 +50,14 @@ Download c2c.user.js and install as a user script.
 * Smarter use of Spider Web scroll (don't spam if all enemies are already stuck).
 * Reserve qty of scrolls could be done total, instead or per scroll type.
 * Potion 'Spells Cost Nothing' should be sold if no mage is in party?  Not sure if useful for fighters.
-
+* 'Fire Rain' and 'Spider Web' should have delay in casting.
 
 # updates
+
+### 1.0.8
+* 'Faster Farming' is used as soon as it's obtained (since it's useful outside of combat).
+* Treasure Potions ('Random Treasure Room', 'Double Gold Drops' and 'Double Item Drops') aren't used if Scroll potions ('Scrolls Auto Fire' and 'Infinite Scrolls') are active (since it slows party down to much).  
+
 
 ### 1.0.7
 

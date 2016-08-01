@@ -3,7 +3,7 @@
 // @namespace   C2C
 // @description Clicker Bot for Clickpocalypse2
 // @include     http://minmaxia.com/c2/
-// @version     1.0.7
+// @version     1.0.8
 // @grant       none
 // @require https://code.jquery.com/jquery-3.1.0.slim.min.js
 // ==/UserScript==
@@ -137,11 +137,11 @@ $(document).ready(function () {
 				}
 
 				// Always click farm bonus or fast walking potions as soon as we get them, since they are useful anywhere.
-				if (potionName === 'Faster Infestation' || potionName === 'More Kills Per Farm' || potionName === 'Fast Walking') {
-					console.log('Using potion : ' + potionName);
+				if (potionName === 'Faster Infestation' || potionName === 'More Kills Per Farm' || potionName === 'Faster Farming' || potionName === 'Fast Walking') {
 					clickSelector(potionSelector);
 					continue;
 				}
+
 
 				// Only click these if we are in battle, no need to chug potions if we are walking around peaceful overworld.
 				if (isBossEncounter || isEncounter) {
@@ -157,6 +157,11 @@ $(document).ready(function () {
 						if (potionCount < 6 && !(isPotionActive_InfinteScrolls || isPotionActive_ScrollsAutoFire)) {
 							continue;
 						}
+					}
+
+					if ( (potionName === 'Random Treasure Room' || potionName === 'Double Item Drops' || potionName === 'Double Gold Drops')  
+						&& (isPotionActive_InfinteScrolls || isPotionActive_ScrollsAutoFire) ) {
+						continue;
 					}
 
 					clickSelector(potionSelector);
@@ -208,6 +213,7 @@ $(document).ready(function () {
 				continue;
 			}
 
+
 			// Spam spells if Infinite Scrolls potion is active.
 			if (scrollAmount === 'Infinite' || isPotionActive_InfinteScrolls) {
 
@@ -231,12 +237,12 @@ $(document).ready(function () {
 				clickSelector(scrollButton);
 			}
 
+
 			if (i != 1) {
 
 				// keep scrolls in reserve if generic encounter so we have them for boss.
 				// No limit if this is a boss encounter
 				if (scrollAmount > scrollReserve || isBossEncounter || isDifficultEncounter) {
-
 					clickSelector(scrollButton);
 				}
 
