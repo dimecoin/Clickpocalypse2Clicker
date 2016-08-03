@@ -159,7 +159,7 @@ $(document).ready(function () {
 						}
 					}
 
-					if ( (potionName === 'Random Treasure Room' || potionName === 'Double Item Drops' || potionName === 'Double Gold')  
+					if ( (potionName === 'Random Treasure Room' || potionName === 'Double Item Drops' || potionName === 'Double Gold Drops')  
 						&& (isPotionActive_InfinteScrolls || isPotionActive_ScrollsAutoFire) ) {
 						continue;
 					}
